@@ -1912,7 +1912,7 @@ public class SVG implements Serializable
 
     protected interface HasTransform
     {
-        public void setTransform(Matrix matrix);
+        public void setTransform(SerializableMatrix matrix);
     }
 
 
@@ -2028,7 +2028,7 @@ public class SVG implements Serializable
     // An SVG element that can contain other elements.
     public static class Group extends SvgConditionalContainer implements HasTransform
     {
-        public Matrix  transform;
+        public SerializableMatrix  transform;
 
         protected Object readResolve() throws ObjectStreamException {
             return this;
@@ -2060,7 +2060,7 @@ public class SVG implements Serializable
         }
 
         @Override
-        public void setTransform(Matrix transform) { this.transform = transform; }
+        public void setTransform(SerializableMatrix transform) { this.transform = transform; }
     }
 
 
@@ -2080,10 +2080,10 @@ public class SVG implements Serializable
     // Specifically: �circle�, �ellipse�, �image�, �line�, �path�, �polygon�, �polyline�, �rect�, �text� and �use�.
     protected static abstract class GraphicsElement extends SvgConditionalElement implements HasTransform
     {
-        public Matrix  transform;
+        public SerializableMatrix  transform;
 
         @Override
-        public void setTransform(Matrix transform) { this.transform = transform; }
+        public void setTransform(SerializableMatrix transform) { this.transform = transform; }
 
         protected Object readResolve() throws ObjectStreamException {
             return this;
@@ -2507,10 +2507,10 @@ public class SVG implements Serializable
 
     public static class Text extends TextPositionedContainer implements TextRoot, HasTransform
     {
-        public Matrix  transform;
+        public SerializableMatrix  transform;
 
         @Override
-        public void setTransform(Matrix transform) { this.transform = transform; }
+        public void setTransform(SerializableMatrix transform) { this.transform = transform; }
 
         protected Object readResolve() throws ObjectStreamException {
             return this;
@@ -3000,7 +3000,7 @@ public class SVG implements Serializable
         public Length  y;
         public Length  width;
         public Length  height;
-        public Matrix  transform;
+        public SerializableMatrix  transform;
 
         protected Object readResolve() throws ObjectStreamException {
             return this;
@@ -3032,7 +3032,7 @@ public class SVG implements Serializable
         }
 
         @Override
-        public void setTransform(Matrix transform) { this.transform = transform; }
+        public void setTransform(SerializableMatrix transform) { this.transform = transform; }
     }
 
 
