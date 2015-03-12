@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -118,7 +119,7 @@ public class SVG implements Serializable
 
     // Pust and Pop stack
     transient private Stack<InputStream> pushPopStack = new Stack<InputStream>();
-    transient private InputStream originalStream;
+    transient private ByteArrayOutputStream originalStream; // InputStream can only be read once
 
     protected enum Unit
     {
@@ -184,7 +185,7 @@ public class SVG implements Serializable
 
     public void restoreToOriginal() {
         try {
-            ObjectInputStream inputStream = new ObjectInputStream(originalStream);
+            ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(originalStream.toByteArray()));
             this.rootElement = (Svg) inputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
@@ -230,7 +231,7 @@ public class SVG implements Serializable
     {
         SVGParser  parser = new SVGParser();
         SVG svg = parser.parse(is);
-        svg.originalStream = new ByteArrayInputStream(svg.convertToPushPopOutputStream().toByteArray());
+        svg.originalStream = svg.convertToPushPopOutputStream();
         return svg;
     }
 
@@ -246,7 +247,7 @@ public class SVG implements Serializable
     {
         SVGParser  parser = new SVGParser();
         SVG _svg = parser.parse(new ByteArrayInputStream(svg.getBytes()));
-        _svg.originalStream = new ByteArrayInputStream(_svg.convertToPushPopOutputStream().toByteArray());
+        _svg.originalStream = _svg.convertToPushPopOutputStream();
         return _svg;
     }
 
@@ -279,7 +280,7 @@ public class SVG implements Serializable
         InputStream  is = resources.openRawResource(resourceId);
         try {
             SVG _svg = parser.parse(is);
-            _svg.originalStream = new ByteArrayInputStream(_svg.convertToPushPopOutputStream().toByteArray());
+            _svg.originalStream = _svg.convertToPushPopOutputStream();
             return _svg;
         } finally {
             try {
@@ -306,7 +307,7 @@ public class SVG implements Serializable
         InputStream  is = assetManager.open(filename);
         try {
             SVG _svg = parser.parse(is);
-            _svg.originalStream = new ByteArrayInputStream(_svg.convertToPushPopOutputStream().toByteArray());
+            _svg.originalStream = _svg.convertToPushPopOutputStream();
             return _svg;
         } finally {
             try {
