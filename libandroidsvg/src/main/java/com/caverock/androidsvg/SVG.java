@@ -1099,57 +1099,57 @@ public class SVG implements Serializable
         // Which properties have been explicitly specified by this element
         public long       specifiedFlags = 0;
 
-        public SvgPaint   fill;
-        public FillRule   fillRule;
-        public Float      fillOpacity;
+        protected SvgPaint   fill;
+        protected FillRule   fillRule;
+        protected Float      fillOpacity;
 
-        public SvgPaint   stroke;
-        public Float      strokeOpacity;
-        public Length     strokeWidth;
-        public LineCaps   strokeLineCap;
-        public LineJoin   strokeLineJoin;
-        public Float      strokeMiterLimit;
-        public Length[]   strokeDashArray;
-        public Length     strokeDashOffset;
+        protected SvgPaint   stroke;
+        protected Float      strokeOpacity;
+        protected Length     strokeWidth;
+        protected LineCaps   strokeLineCap;
+        protected LineJoin   strokeLineJoin;
+        protected Float      strokeMiterLimit;
+        protected Length[]   strokeDashArray;
+        protected Length     strokeDashOffset;
 
-        public Float      opacity; // master opacity of both stroke and fill
+        protected Float      opacity; // master opacity of both stroke and fill
 
-        public Colour     color;
+        protected Colour     color;
 
-        public List<String>    fontFamily;
-        public Length          fontSize;
-        public Integer         fontWeight;
-        public FontStyle       fontStyle;
-        public TextDecoration  textDecoration;
-        public TextDirection   direction;
+        protected List<String>    fontFamily;
+        protected Length          fontSize;
+        protected Integer         fontWeight;
+        protected FontStyle       fontStyle;
+        protected TextDecoration  textDecoration;
+        protected TextDirection   direction;
 
-        public TextAnchor   textAnchor;
+        protected TextAnchor   textAnchor;
 
-        public Boolean      overflow;  // true if overflow visible
-        public CSSClipRect  clip;
+        protected Boolean      overflow;  // true if overflow visible
+        protected CSSClipRect  clip;
 
-        public String     markerStart;
-        public String     markerMid;
-        public String     markerEnd;
+        protected String     markerStart;
+        protected String     markerMid;
+        protected String     markerEnd;
 
-        public Boolean    display;    // true if we should display
-        public Boolean    visibility; // true if visible
+        protected Boolean    display;    // true if we should display
+        protected Boolean    visibility; // true if visible
 
-        public SvgPaint   stopColor;
-        public Float      stopOpacity;
+        protected SvgPaint   stopColor;
+        protected Float      stopOpacity;
 
-        public String     clipPath;
-        public FillRule   clipRule;
+        protected String     clipPath;
+        protected FillRule   clipRule;
 
-        public String     mask;
+        protected String     mask;
 
-        public SvgPaint   solidColor;
-        public Float      solidOpacity;
+        protected SvgPaint   solidColor;
+        protected Float      solidOpacity;
 
-        public SvgPaint   viewportFill;
-        public Float      viewportFillOpacity;
+        protected SvgPaint   viewportFill;
+        protected Float      viewportFillOpacity;
 
-        public VectorEffect  vectorEffect;
+        protected VectorEffect  vectorEffect;
 
 
         public static final int  FONT_WEIGHT_NORMAL = 400;
@@ -1320,6 +1320,339 @@ public class SVG implements Serializable
             {
                 throw new InternalError(e.toString());
             }
+        }
+
+        public void setFill(SvgPaint fill) {
+            this.fill = fill;
+            this.specifiedFlags |= SPECIFIED_FILL;
+        }
+
+        public void setFillRule(FillRule fillRule) {
+            this.fillRule = fillRule;
+            this.specifiedFlags |= SPECIFIED_FILL_RULE;
+        }
+
+        public void setFillOpacity(Float fillOpacity) {
+            this.fillOpacity = fillOpacity;
+            this.specifiedFlags |= SPECIFIED_FILL_OPACITY;
+        }
+
+        public void setStroke(SvgPaint stroke) {
+            this.stroke = stroke;
+            this.specifiedFlags |= SPECIFIED_STROKE;
+        }
+
+        public void setStrokeOpacity(Float strokeOpacity) {
+            this.strokeOpacity = strokeOpacity;
+            this.specifiedFlags |= SPECIFIED_STROKE_OPACITY;
+        }
+
+        public void setStrokeWidth(Length strokeWidth) {
+            this.strokeWidth = strokeWidth;
+            this.specifiedFlags |= SPECIFIED_STROKE_WIDTH;
+        }
+
+        public void setStrokeLineCap(LineCaps strokeLineCap) {
+            this.strokeLineCap = strokeLineCap;
+            this.specifiedFlags |= SPECIFIED_STROKE_LINECAP;
+        }
+
+        public void setStrokeLineJoin(LineJoin strokeLineJoin) {
+            this.strokeLineJoin = strokeLineJoin;
+            this.specifiedFlags |= SPECIFIED_STROKE_LINEJOIN;
+        }
+
+        public void setStrokeMiterLimit(Float strokeMiterLimit) {
+            this.strokeMiterLimit = strokeMiterLimit;
+            this.specifiedFlags |= SPECIFIED_STROKE_MITERLIMIT;
+        }
+
+        public void setStrokeDashArray(Length[] strokeDashArray) {
+            this.strokeDashArray = strokeDashArray;
+            this.specifiedFlags |= SPECIFIED_STROKE_DASHARRAY;
+        }
+
+        public void setStrokeDashOffset(Length strokeDashOffset) {
+            this.strokeDashOffset = strokeDashOffset;
+            this.specifiedFlags |= SPECIFIED_STROKE_DASHOFFSET;
+        }
+
+        public void setOpacity(Float opacity) {
+            this.opacity = opacity;
+            this.specifiedFlags |= SPECIFIED_OPACITY;
+        }
+
+        public void setColor(Colour color) {
+            this.color = color;
+            this.specifiedFlags |= SPECIFIED_COLOR;
+        }
+
+        public void setFontFamily(List<String> fontFamily) {
+            this.fontFamily = fontFamily;
+            this.specifiedFlags |= SPECIFIED_FONT_FAMILY;
+        }
+
+        public void setFontSize(Length fontSize) {
+            this.fontSize = fontSize;
+            this.specifiedFlags |= SPECIFIED_FONT_SIZE;
+        }
+
+        public void setFontWeight(Integer fontWeight) {
+            this.fontWeight = fontWeight;
+            this.specifiedFlags |= SPECIFIED_FONT_WEIGHT;
+        }
+
+        public void setFontStyle(FontStyle fontStyle) {
+            this.fontStyle = fontStyle;
+            this.specifiedFlags |= SPECIFIED_FONT_STYLE;
+        }
+
+        public void setTextDecoration(TextDecoration textDecoration) {
+            this.textDecoration = textDecoration;
+            this.specifiedFlags |= SPECIFIED_TEXT_DECORATION;
+        }
+
+        public void setDirection(TextDirection direction) {
+            this.direction = direction;
+            this.specifiedFlags |= SPECIFIED_DIRECTION;
+        }
+
+        public void setTextAnchor(TextAnchor textAnchor) {
+            this.textAnchor = textAnchor;
+            this.specifiedFlags |= SPECIFIED_TEXT_ANCHOR;
+        }
+
+        public void setOverflow(Boolean overflow) {
+            this.overflow = overflow;
+            this.specifiedFlags |= SPECIFIED_OVERFLOW;
+        }
+
+        public void setClip(CSSClipRect clip) {
+            this.clip = clip;
+            this.specifiedFlags |= SPECIFIED_CLIP;
+        }
+
+        public void setMarkerStart(String markerStart) {
+            this.markerStart = markerStart;
+            this.specifiedFlags |= SPECIFIED_MARKER_START;
+        }
+
+        public void setMarkerMid(String markerMid) {
+            this.markerMid = markerMid;
+            this.specifiedFlags |= SPECIFIED_MARKER_MID;
+        }
+
+        public void setMarkerEnd(String markerEnd) {
+            this.markerEnd = markerEnd;
+            this.specifiedFlags |= SPECIFIED_MARKER_END;
+        }
+
+        public void setDisplay(Boolean display) {
+            this.display = display;
+            this.specifiedFlags |= SPECIFIED_DISPLAY;
+        }
+
+        public void setVisibility(Boolean visibility) {
+            this.visibility = visibility;
+            this.specifiedFlags |= SPECIFIED_VISIBILITY;
+        }
+
+        public void setStopColor(SvgPaint stopColor) {
+            this.stopColor = stopColor;
+            this.specifiedFlags |= SPECIFIED_STOP_COLOR;
+        }
+
+        public void setStopOpacity(Float stopOpacity) {
+            this.stopOpacity = stopOpacity;
+            this.specifiedFlags |= SPECIFIED_STOP_OPACITY;
+        }
+
+        public void setClipPath(String clipPath) {
+            this.clipPath = clipPath;
+            this.specifiedFlags |= SPECIFIED_CLIP_PATH;
+        }
+
+        public void setClipRule(FillRule clipRule) {
+            this.clipRule = clipRule;
+            this.specifiedFlags |= SPECIFIED_CLIP_RULE;
+        }
+
+        public void setMask(String mask) {
+            this.mask = mask;
+            this.specifiedFlags |= SPECIFIED_MASK;
+        }
+
+        public void setSolidColor(SvgPaint solidColor) {
+            this.solidColor = solidColor;
+            this.specifiedFlags |= SPECIFIED_SOLID_COLOR;
+        }
+
+        public void setSolidOpacity(Float solidOpacity) {
+            this.solidOpacity = solidOpacity;
+            this.specifiedFlags |= SPECIFIED_SOLID_OPACITY;
+        }
+
+        public void setViewportFill(SvgPaint viewportFill) {
+            this.viewportFill = viewportFill;
+            this.specifiedFlags |= SPECIFIED_VIEWPORT_FILL;
+        }
+
+        public void setViewportFillOpacity(Float viewportFillOpacity) {
+            this.viewportFillOpacity = viewportFillOpacity;
+            this.specifiedFlags |= SPECIFIED_VIEWPORT_FILL_OPACITY;
+        }
+
+        public void setVectorEffect(VectorEffect vectorEffect) {
+            this.vectorEffect = vectorEffect;
+            this.specifiedFlags |= SPECIFIED_VECTOR_EFFECT;
+        }
+
+        public VectorEffect getVectorEffect() {
+            return vectorEffect;
+        }
+
+        public Boolean isOverflow() {
+            return overflow;
+        }
+
+        public CSSClipRect getClip() {
+            return clip;
+        }
+
+        public String getMarkerStart() {
+            return markerStart;
+        }
+
+        public String getMarkerMid() {
+            return markerMid;
+        }
+
+        public String getMarkerEnd() {
+            return markerEnd;
+        }
+
+        public Boolean isDisplay() {
+            return display;
+        }
+
+        public Boolean isVisibility() {
+            return visibility;
+        }
+
+        public SvgPaint getStopColor() {
+            return stopColor;
+        }
+
+        public Float getStopOpacity() {
+            return stopOpacity;
+        }
+
+        public String getClipPath() {
+            return clipPath;
+        }
+
+        public FillRule getClipRule() {
+            return clipRule;
+        }
+
+        public String getMask() {
+            return mask;
+        }
+
+        public SvgPaint getSolidColor() {
+            return solidColor;
+        }
+
+        public Float getSolidOpacity() {
+            return solidOpacity;
+        }
+
+        public SvgPaint getViewportFill() {
+            return viewportFill;
+        }
+
+        public Float getViewportFillOpacity() {
+            return viewportFillOpacity;
+        }
+
+        public FillRule getFillRule() {
+            return fillRule;
+        }
+
+        public Float getFillOpacity() {
+            return fillOpacity;
+        }
+
+        public SvgPaint getStroke() {
+            return stroke;
+        }
+
+        public Float getStrokeOpacity() {
+            return strokeOpacity;
+        }
+
+        public Length getStrokeWidth() {
+            return strokeWidth;
+        }
+
+        public LineCaps getStrokeLineCap() {
+            return strokeLineCap;
+        }
+
+        public LineJoin getStrokeLineJoin() {
+            return strokeLineJoin;
+        }
+
+        public Float getStrokeMiterLimit() {
+            return strokeMiterLimit;
+        }
+
+        public Length[] getStrokeDashArray() {
+            return strokeDashArray;
+        }
+
+        public Length getStrokeDashOffset() {
+            return strokeDashOffset;
+        }
+
+        public Float getOpacity() {
+            return opacity;
+        }
+
+        public Colour getColor() {
+            return color;
+        }
+
+        public List<String> getFontFamily() {
+            return fontFamily;
+        }
+
+        public Length getFontSize() {
+            return fontSize;
+        }
+
+        public Integer getFontWeight() {
+            return fontWeight;
+        }
+
+        public FontStyle getFontStyle() {
+            return fontStyle;
+        }
+
+        public TextDecoration getTextDecoration() {
+            return textDecoration;
+        }
+
+        public TextDirection getDirection() {
+            return direction;
+        }
+
+        public TextAnchor getTextAnchor() {
+            return textAnchor;
+        }
+
+        public SvgPaint getFill() {
+            return fill;
         }
     }
 
