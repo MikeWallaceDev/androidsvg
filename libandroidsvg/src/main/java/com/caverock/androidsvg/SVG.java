@@ -3350,7 +3350,7 @@ public class SVG implements Serializable
     }
 
     /**
-     * Get {@code SvgObject} from given id in this SVG.
+     * Get {@code SvgObject} by the given id in this SVG.
      *
      * @param id the requested id.
      * @return the {@code SvgObject} with the given id in this SVG. Cast the retrieved object to the original Class by yourself.
@@ -3371,7 +3371,7 @@ public class SVG implements Serializable
     }
 
     /**
-     * Get {@code SvgObject} from given id which located in the given {@code SvgContainer}.
+     * Get {@code SvgObject} by the given id which located in the given {@code SvgContainer}.
      *
      * @param obj where the {@code SvgObject} located in.
      * @param id the requested id.
@@ -3404,7 +3404,7 @@ public class SVG implements Serializable
     }
 
     /**
-     * Get {@code SvgObject}s from given class name in this SVG.
+     * Get {@code SvgObject}s by the given class name in this SVG.
      *
      * @param className the requested class name (SVG class attribute, not JAVA {@code Class}).
      * @return the list of {@code SvgObject} with the given class name in this SVG. Cast the retrieved object to the original Class by yourself.
@@ -3422,7 +3422,7 @@ public class SVG implements Serializable
     }
 
     /**
-     * Get {@code SvgObject}s from given class name which located in the given {@code SvgContainer}.
+     * Get {@code SvgObject}s by the given class name which located in the given {@code SvgContainer}.
      *
      * @param obj where the {@code SvgObject} located in.
      * @param className the requested class name (SVG class attribute, not JAVA {@code Class}).
@@ -3471,7 +3471,7 @@ public class SVG implements Serializable
     }
 
     /**
-     * Get {@code SvgObject}s from given tag name which located in this SVG.
+     * Get {@code SvgObject}s by the given tag name which located in this SVG.
      *
      * @param clazz the {@code Class} representing the requested tag name.
      * @return the list of {@code SvgObject} with the given tag name in this SVG. Cast the retrieved object to the original Class by yourself.
@@ -3485,7 +3485,7 @@ public class SVG implements Serializable
 
 
     /**
-     * Get {@code SvgObject}s from given tag name which located in the given {@code SvgContainer}.
+     * Get {@code SvgObject}s by the given tag name which located in the given {@code SvgContainer}.
      *
      * @param obj where the {@code SvgObject} located in.
      * @param clazz the {@code Class} representing the requested tag name.
