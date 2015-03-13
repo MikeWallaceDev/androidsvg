@@ -645,7 +645,7 @@ public class SVG implements Serializable
         if (this.rootElement == null)
             throw new IllegalArgumentException("SVG document is empty");
 
-        List<SvgObject>  viewElems = getElementsByTagName(View.class);
+        List<SvgObject>  viewElems = (List<SvgObject>) getElementsByTagName(View.class);
 
         Set<String>  viewIds = new HashSet<String>(viewElems.size());
         for (SvgObject elem: viewElems)
@@ -1648,7 +1648,7 @@ public class SVG implements Serializable
 
 
     // Any object that can be part of the tree
-    protected static class SvgObject implements Serializable
+    public static class SvgObject implements Serializable
     {
         private static final long serialVersionUID = 0L;
         transient public SVG           document;
@@ -3446,7 +3446,7 @@ public class SVG implements Serializable
             SvgElementBase  childElem = (SvgElementBase) child;
             if (child instanceof SvgContainer)
             {
-                List<SvgElementBase> foundInContainer = getElementsByClass((SvgContainer) child, className);
+                List<SvgElementBase> foundInContainer = (List<SvgElementBase>) getElementsByClass((SvgContainer) child, className);
                 elemSet.addAll(foundInContainer);
             } else {
                 for (String childElemClassName : childElem.classNames) {
@@ -3503,7 +3503,7 @@ public class SVG implements Serializable
             if (child.getClass() == clazz)
                 result.add(child);
             if (child instanceof SvgContainer)
-                getElementsByTagName((SvgContainer) child, clazz);
+                result.addAll(getElementsByTagName((SvgContainer) child, clazz));
         }
         return result;
     }
